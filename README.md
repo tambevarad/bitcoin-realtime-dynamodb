@@ -1,3 +1,44 @@
+# Real-Time Bitcoin Price Ingestion and Analysis with AWS DynamoDB
+
+This project implements a real-time data ingestion and analysis pipeline for tracking Bitcoin (BTC) prices using the [CoinGecko API](https://www.coingecko.com/en/api), AWS DynamoDB, and AWS Lambda.
+
+> 🔄 The system fetches BTC price every 60 seconds and logs it to DynamoDB. Lambda is triggered by DynamoDB Streams to log each insert in real-time. The data is analyzed using Python notebooks.
+
+---
+
+## 📦 Components
+
+### `realtime_ingestor.py`
+- Fetches Bitcoin price from CoinGecko
+- Inserts price + timestamp into DynamoDB table `BitcoinPrices` every 60 seconds
+
+### `template.API.ipynb`
+- Demonstrates AWS SDK usage to:
+  - List DynamoDB tables
+  - Fetch real-time BTC price from the API
+  - Insert the price into the table manually
+
+### `template.example.ipynb`
+- Loads data from DynamoDB into a Pandas DataFrame
+- Converts timestamp into datetime
+- Computes and plots:
+  - BTC price trend
+  - Moving averages
+
+---
+
+## 🧰 Technologies Used
+
+- **Python 3.x**
+- **Boto3** – AWS SDK for Python
+- **AWS DynamoDB** – NoSQL storage
+- **AWS Lambda** – Serverless processing (triggered by DynamoDB Streams)
+- **CloudWatch Logs** – For logging Lambda executions
+- **CoinGecko API** – Real-time BTC pricing data
+
+---
+
+## 📁 Folder Structure
 # Tutorial Template: Two Docker Approaches
 
 - This directory provides two versions of the same tutorial setup to help you
